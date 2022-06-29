@@ -24,7 +24,9 @@ import org.apache.flink.configuration.Configuration;
 import org.apache.flink.kubernetes.KubernetesClusterClientFactory;
 import org.apache.flink.kubernetes.configuration.KubernetesConfigOptions;
 import org.apache.flink.kubernetes.operator.config.FlinkConfigManager;
+import org.apache.flink.kubernetes.operator.crd.FlinkDeployment;
 import org.apache.flink.kubernetes.operator.crd.spec.JobSpec;
+import org.apache.flink.kubernetes.operator.crd.spec.UpgradeMode;
 import org.apache.flink.kubernetes.operator.crd.status.FlinkDeploymentStatus;
 import org.apache.flink.kubernetes.operator.kubeclient.Fabric8FlinkStandaloneKubeClient;
 import org.apache.flink.kubernetes.operator.kubeclient.FlinkStandaloneKubeClient;
@@ -58,10 +60,8 @@ public class StandaloneFlinkService extends AbstractFlinkService {
     }
 
     @Override
-    public void submitApplicationCluster(
-            JobSpec jobSpec, Configuration conf, boolean requireHaMetadata) throws Exception {
+    protected void deployApplicationCluster(JobSpec jobSpec, Configuration conf) throws Exception {
         LOG.info("Deploying application cluster");
-        // TODO some HA stuff?
         submitClusterInternal(conf);
         LOG.info("Application cluster successfully deployed");
     }
@@ -69,9 +69,14 @@ public class StandaloneFlinkService extends AbstractFlinkService {
     @Override
     public void submitSessionCluster(Configuration conf) throws Exception {
         LOG.info("Deploying session cluster");
-        // TODO some HA stuff?
         submitClusterInternal(conf);
         LOG.info("Session cluster successfully deployed");
+    }
+
+    @Override
+    public void cancelJob(FlinkDeployment deployment, UpgradeMode upgradeMode, Configuration conf)
+            throws Exception {
+        cancelJob(deployment, upgradeMode, conf, true);
     }
 
     @Override
