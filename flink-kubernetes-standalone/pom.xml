@@ -35,6 +35,11 @@ under the License.
 
     <dependencies>
         <dependency>
+            <groupId>io.fabric8</groupId>
+            <artifactId>kubernetes-client</artifactId>
+            <version>${fabric8.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-kubernetes</artifactId>
             <version>${flink.version}</version>
@@ -68,9 +73,9 @@ under the License.
         </dependency>
 
         <dependency>
-            <artifactId>flink-kubernetes-mock-shaded</artifactId>
-            <groupId>org.apache.flink</groupId>
-            <version>${project.version}</version>
+            <groupId>io.fabric8</groupId>
+            <artifactId>kubernetes-server-mock</artifactId>
+            <version>${fabric8.version}</version>
             <scope>test</scope>
         </dependency>
 

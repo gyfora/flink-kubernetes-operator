@@ -51,7 +51,6 @@ under the License.
     </scm>
 
     <modules>
-        <module>flink-kubernetes-mock-shaded</module>
         <module>flink-kubernetes-standalone</module>
         <module>flink-kubernetes-shaded</module>
         <module>flink-kubernetes-operator</module>
