@@ -52,7 +52,4 @@ public class FlinkBlueGreenDeploymentStatus {
 
     /** Timestamp when the deployment became READY/STABLE. Used to determine when to delete it. */
     private String deploymentReadyTimestamp;
-
-    /** Information about the TaskManagers for the scale subresource. */
-    private TaskManagerInfo taskManager;
 }

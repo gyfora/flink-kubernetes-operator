@@ -10453,20 +10453,9 @@ spec:
                 type: string
               lastReconciledTimestamp:
                 type: string
-              taskManager:
-                properties:
-                  labelSelector:
-                    type: string
-                  replicas:
-                    type: integer
-                type: object
             type: object
         type: object
     served: true
     storage: true
     subresources:
-      scale:
-        labelSelectorPath: .status.taskManager.labelSelector
-        specReplicasPath: .spec.template.spec.taskManager.replicas
-        statusReplicasPath: .status.taskManager.replicas
       status: {}
